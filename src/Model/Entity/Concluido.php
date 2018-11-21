@@ -35,6 +35,7 @@ class Concluido extends Entity
     ];
 
     protected function _getNome(){
+        //debug($this->_properties);
         return $this->_properties['passo']->nome;
     }
 }

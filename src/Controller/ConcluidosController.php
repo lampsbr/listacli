@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\I18n\Time;
 
 /**
  * Concluidos Controller
@@ -64,6 +65,21 @@ class ConcluidosController extends AppController
         $projetos = $this->Concluidos->Projetos->find('list', ['limit' => 200]);
         $passos = $this->Concluidos->Passos->find('list', ['limit' => 200]);
         $this->set(compact('concluido', 'projetos', 'passos'));
+    }
+
+    public function concluir(){
+        $projetoId = isset($this->request->query['projeto']) ? $this->request->query['projeto']:null;
+        $passoId = isset($this->request->query['passo']) ? $this->request->query['passo']:null;
+        $concluido = $this->Concluidos->newEntity();
+        $concluido->projeto_id = $projetoId;
+        $concluido->passo_id = $passoId;
+        $concluido->data = Time::now();
+        if ($this->Concluidos->save($concluido)) {
+            $this->Flash->success(__('O passo foi concluído.'));
+        } else{
+            $this->Flash->error(__('Erro ao concluir passo.'));
+        }
+        return $this->redirect(['controller' => 'projetos','action' => 'view',$projetoId]);
     }
 
     /**

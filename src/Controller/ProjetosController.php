@@ -37,9 +37,26 @@ class ProjetosController extends AppController
     public function view($id = null)
     {
         $projeto = $this->Projetos->get($id, [
-            'contain' => ['Modelos', 'Clientes', 'Concluidos']
+            'contain' => ['Modelos', 'Clientes', 'Concluidos' => ['Passos']]
         ]);
 
+        //obtendo pendentes
+        $this->loadModel('Passos');
+        $passosDoModelo = $this->Passos->findAllByModeloId($projeto->modelo_id)->all();
+        $pendentes = [];
+        foreach ($passosDoModelo as $passo) {
+            $achou = false;
+            foreach ($projeto->concluidos as $conc) {
+                if($passo->idpassos === $conc->passo->idpassos){
+                    $achou = true;
+                }
+            }
+            if(!$achou){
+                array_push($pendentes, $passo);
+            }
+        }
+
+        $this->set('pendentes', $pendentes);
         $this->set('projeto', $projeto);
     }
 

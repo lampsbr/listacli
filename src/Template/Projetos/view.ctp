@@ -20,7 +20,7 @@
     </ul>
 </nav>
 <div class="projetos view large-9 medium-8 columns content">
-    <h3><?= h($projeto->id) ?></h3>
+    <h3><?= h($projeto->descricao) ?></h3>
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Observacao') ?></th>
@@ -28,11 +28,11 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Modelo') ?></th>
-            <td><?= $projeto->has('modelo') ? $this->Html->link($projeto->modelo->id, ['controller' => 'Modelos', 'action' => 'view', $projeto->modelo->id]) : '' ?></td>
+            <td><?= $projeto->has('modelo') ? $this->Html->link($projeto->modelo->nome, ['controller' => 'Modelos', 'action' => 'view', $projeto->modelo->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Cliente') ?></th>
-            <td><?= $projeto->has('cliente') ? $this->Html->link($projeto->cliente->id, ['controller' => 'Clientes', 'action' => 'view', $projeto->cliente->id]) : '' ?></td>
+            <td><?= $projeto->has('cliente') ? $this->Html->link($projeto->cliente->nome, ['controller' => 'Clientes', 'action' => 'view', $projeto->cliente->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>
@@ -40,27 +40,47 @@
         </tr>
     </table>
     <div class="related">
-        <h4><?= __('Related Concluidos') ?></h4>
+        <h4><?= __('Etapas concluídas') ?></h4>
         <?php if (!empty($projeto->concluidos)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
-                <th scope="col"><?= __('Id') ?></th>
+                <th scope="col"><?= __('Ordem') ?></th>
                 <th scope="col"><?= __('Data') ?></th>
-                <th scope="col"><?= __('Projeto Id') ?></th>
-                <th scope="col"><?= __('Passo Id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= __('Passo') ?></th>
+                <!--<th scope="col" class="actions"><?= __('Actions') ?></th>-->
             </tr>
             <?php foreach ($projeto->concluidos as $concluidos): ?>
             <tr>
-                <td><?= h($concluidos->id) ?></td>
+                <td><?= h($concluidos->passo->ordem) ?></td>
                 <td><?= h($concluidos->data) ?></td>
-                <td><?= h($concluidos->projeto_id) ?></td>
-                <td><?= h($concluidos->passo_id) ?></td>
-                <td class="actions">
+                <td><?= h($concluidos->nome) ?></td>
+                <!--<td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Concluidos', 'action' => 'view', $concluidos->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Concluidos', 'action' => 'edit', $concluidos->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['controller' => 'Concluidos', 'action' => 'delete', $concluidos->id], ['confirm' => __('Are you sure you want to delete # {0}?', $concluidos->id)]) ?>
-                </td>
+                </td>-->
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+
+    <div class="related">
+        <h4><?= __('Etapas pendentes') ?></h4>
+        <?php if (!empty($pendentes)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th scope="col"><?= __('Ordem') ?></th>
+                <th scope="col"><?= __('Passo') ?></th>
+                <th scope="col"><?= __('Ações') ?></th>
+            </tr>
+            <?php foreach ($pendentes as $pend): ?>
+            <tr>
+                <td><?= h($pend->ordem) ?></td>
+                <td><?= h($pend->nome) ?></td>
+                <td><?= $this->Html->link(__('concluir esta etapa'), 
+                    array('controller' => 'Concluidos', 'action' => 'concluir', '?' => array('projeto' => $projeto->id, 'passo' => $pend->idpassos ))
+                )?></td>
             </tr>
             <?php endforeach; ?>
         </table>
