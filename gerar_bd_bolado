@@ -1,0 +1,118 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema cajuvdgl_listacli
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema cajuvdgl_listacli
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `cajuvdgl_listacli` DEFAULT CHARACTER SET utf8mb4 ;
+USE `cajuvdgl_listacli` ;
+
+-- -----------------------------------------------------
+-- Table `cajuvdgl_listacli`.`clientes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cajuvdgl_listacli`.`clientes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(200) NOT NULL,
+  `observacao` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `cajuvdgl_listacli`.`modelos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cajuvdgl_listacli`.`modelos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `cajuvdgl_listacli`.`passos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cajuvdgl_listacli`.`passos` (
+  `idpassos` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NOT NULL,
+  `ordem` INT NOT NULL,
+  `modelo_id` INT NOT NULL,
+  PRIMARY KEY (`idpassos`),
+  INDEX `fk_passos_modelos_idx` (`modelo_id` ASC),
+  CONSTRAINT `fk_passos_modelos`
+    FOREIGN KEY (`modelo_id`)
+    REFERENCES `cajuvdgl_listacli`.`modelos` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `cajuvdgl_listacli`.`projetos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cajuvdgl_listacli`.`projetos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `observacao` VARCHAR(45) NULL,
+  `modelo_id` INT NOT NULL,
+  `cliente_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_projetos_modelos1_idx` (`modelo_id` ASC),
+  INDEX `fk_projetos_clientes1_idx` (`cliente_id` ASC),
+  CONSTRAINT `fk_projetos_modelos1`
+    FOREIGN KEY (`modelo_id`)
+    REFERENCES `cajuvdgl_listacli`.`modelos` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_projetos_clientes1`
+    FOREIGN KEY (`cliente_id`)
+    REFERENCES `cajuvdgl_listacli`.`clientes` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `cajuvdgl_listacli`.`concluidos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cajuvdgl_listacli`.`concluidos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `data` VARCHAR(45) NULL,
+  `projeto_id` INT NOT NULL,
+  `passo_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_concluidos_projetos1_idx` (`projeto_id` ASC),
+  INDEX `fk_concluidos_passos1_idx` (`passo_id` ASC),
+  CONSTRAINT `fk_concluidos_projetos1`
+    FOREIGN KEY (`projeto_id`)
+    REFERENCES `cajuvdgl_listacli`.`projetos` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_concluidos_passos1`
+    FOREIGN KEY (`passo_id`)
+    REFERENCES `cajuvdgl_listacli`.`passos` (`idpassos`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+CREATE TABLE users (id INT AUTO_INCREMENT PRIMARY KEY, email VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, created DATETIME, modified DATETIME );
+
+
+
+
+--CRIANDO USER DEFAULT
+INSERT INTO users (email, password, created, modified) VALUES ('biinnag@gmail.com', '$2y$10$6VzBp58gu0mfw.k.YRnkveGrRh8Krb478crnnREeCBsx6wh7NoO.m', NOW(), NOW());
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+

@@ -24,7 +24,8 @@
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('descricao') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('observacao') ?></th>
-                <th scope="col">Etapas concluídas</th>
+                <th scope="col">Progresso</th>
+                <th scope="col">Último concluído</th>
                 <!--<th scope="col"><?= $this->Paginator->sort('modelo_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('cliente_id') ?></th>-->
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -36,7 +37,9 @@
                 <td><?= $this->Number->format($projeto->id) ?></td>
                 <td><?= $projeto->descricao ?></td>
                 <td><?= h($projeto->observacao) ?></td>
-                <td><?= h($projeto->etapasConcluidas) ?></td>
+                <!--<td><?= h($projeto->etapasConcluidas) ?></td>-->
+                <td><progress value="<?= $projeto->totalConcluidos ?>" max="<?= $projeto->totalPassos ?>"></progress></td>
+                <td><?= h($projeto->ultimaConcluida) ?></td>
                 <!--<td><?= $projeto->has('modelo') ? $this->Html->link($projeto->modelo->id, ['controller' => 'Modelos', 'action' => 'view', $projeto->modelo->id]) : '' ?></td>
                 <td><?= $projeto->has('cliente') ? $this->Html->link($projeto->cliente->id, ['controller' => 'Clientes', 'action' => 'view', $projeto->cliente->id]) : '' ?></td>-->
                 <td class="actions">

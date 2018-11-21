@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\I18n\Time;
 
 /**
  * Projeto Entity
@@ -48,6 +49,25 @@ class Projeto extends Entity
             foreach ($this->_properties['concluidos'] as $key => $value) {
                 if(strlen($retorno)>0) $retorno .=', ';
                 $retorno .= $value->passo->nome;
+            }
+        }
+        return $retorno;
+    }
+
+    protected function _getTotalConcluidos(){
+        return sizeof($this->_properties['concluidos']);
+    }
+    protected function _getTotalPassos(){
+        return sizeof($this->_properties['modelo']['passos']);
+    }
+
+    protected function _getUltimaConcluida(){
+        $ordem = 0;
+        $retorno = '';
+        foreach ($this->_properties['concluidos'] as $conc) {
+            if($conc->passo->ordem > $ordem){
+                $ordem = $conc->passo->ordem;
+                $retorno = $conc->passo->nome.' ('.Time::parse($conc->data)->i18nFormat('dd-MM-yyyy HH:mm').')';
             }
         }
         return $retorno;
