@@ -22,7 +22,7 @@
                 <th scope="col"><?= $this->Paginator->sort('idpassos') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('ordem') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modelo_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('modelo') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -32,7 +32,7 @@
                 <td><?= $this->Number->format($passo->idpassos) ?></td>
                 <td><?= h($passo->nome) ?></td>
                 <td><?= $this->Number->format($passo->ordem) ?></td>
-                <td><?= $passo->has('modelo') ? $this->Html->link($passo->modelo->id, ['controller' => 'Modelos', 'action' => 'view', $passo->modelo->id]) : '' ?></td>
+                <td><?= $passo->has('modelo') ? $this->Html->link($passo->modelo->nome, ['controller' => 'Modelos', 'action' => 'view', $passo->modelo->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $passo->idpassos]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $passo->idpassos]) ?>

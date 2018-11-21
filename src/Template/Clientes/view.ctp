@@ -38,16 +38,14 @@
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
                 <th scope="col"><?= __('Observacao') ?></th>
-                <th scope="col"><?= __('Modelo Id') ?></th>
-                <th scope="col"><?= __('Cliente Id') ?></th>
+                <th scope="col"><?= __('Modelo') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($cliente->projetos as $projetos): ?>
             <tr>
                 <td><?= h($projetos->id) ?></td>
                 <td><?= h($projetos->observacao) ?></td>
-                <td><?= h($projetos->modelo_id) ?></td>
-                <td><?= h($projetos->cliente_id) ?></td>
+                <td><?= h($projetos->modelo->nome) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Projetos', 'action' => 'view', $projetos->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Projetos', 'action' => 'edit', $projetos->id]) ?>
