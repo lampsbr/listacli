@@ -23,7 +23,7 @@
     </ul>
 </nav>
 <div class="projetos form large-9 medium-8 columns content">
-    <?= $this->Form->create($projeto) ?>
+    <?= $this->Form->create($projeto, ['type'=>'post','enctype' => 'multipart/form-data']) ?>
     <fieldset>
         <legend><?= __('Edit Projeto') ?></legend>
         <?php

@@ -21,7 +21,7 @@
     </ul>
 </nav>
 <div class="passos form large-9 medium-8 columns content">
-    <?= $this->Form->create($passo) ?>
+    <?= $this->Form->create($passo, ['type'=>'post','enctype' => 'multipart/form-data']) ?>
     <fieldset>
         <legend><?= __('Edit Passo') ?></legend>
         <?php

@@ -21,7 +21,7 @@
     </ul>
 </nav>
 <div class="modelos form large-9 medium-8 columns content">
-    <?= $this->Form->create($modelo) ?>
+    <?= $this->Form->create($modelo, ['type'=>'post','enctype' => 'multipart/form-data']) ?>
     <fieldset>
         <legend><?= __('Edit Modelo') ?></legend>
         <?php

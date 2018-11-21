@@ -21,7 +21,7 @@
     </ul>
 </nav>
 <div class="concluidos form large-9 medium-8 columns content">
-    <?= $this->Form->create($concluido) ?>
+    <?= $this->Form->create($concluido, ['type'=>'post','enctype' => 'multipart/form-data']) ?>
     <fieldset>
         <legend><?= __('Edit Concluido') ?></legend>
         <?php

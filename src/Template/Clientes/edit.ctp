@@ -19,7 +19,7 @@
     </ul>
 </nav>
 <div class="clientes form large-9 medium-8 columns content">
-    <?= $this->Form->create($cliente) ?>
+    <?= $this->Form->create($cliente, ['type'=>'post','enctype' => 'multipart/form-data']) ?>
     <fieldset>
         <legend><?= __('Edit Cliente') ?></legend>
         <?php
