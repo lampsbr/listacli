@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\Passo[]|\Cake\Collection\CollectionInterface $passos
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<!--<nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Passo'), ['action' => 'add']) ?></li>
@@ -13,8 +13,10 @@
         <li><?= $this->Html->link(__('List Concluidos'), ['controller' => 'Concluidos', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Concluido'), ['controller' => 'Concluidos', 'action' => 'add']) ?></li>
     </ul>
-</nav>
-<div class="passos index large-9 medium-8 columns content">
+</nav>-->
+<div class="passos index large-12 columns content">
+    <?= $this->Html->link('Novo Passo', ['action' => 'add'],['class' =>'right']) ?>
+    <?= $this->Html->image('icons/plus-square.svg',['class' => 'right', 'style' => 'margin-right: 0.5em;']) ?>
     <h3><?= __('Passos') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
