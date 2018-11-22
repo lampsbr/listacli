@@ -12,6 +12,11 @@ use App\Controller\AppController;
  */
 class ProjetosController extends AppController
 {
+    public function initialize(){
+        parent::initialize();
+        //$this->loadComponent('RequestHandler');
+        $this->Auth->allow(['all']); 
+    }
 
     /**
      * Index method
@@ -20,6 +25,15 @@ class ProjetosController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Modelos' => ['Passos'], 'Clientes', 'Concluidos' => ['Passos']]
+        ];
+        $projetos = $this->paginate($this->Projetos);    
+        $this->set(compact('projetos'));
+    }
+
+    //retornar json?
+    public function all(){
         $this->paginate = [
             'contain' => ['Modelos' => ['Passos'], 'Clientes', 'Concluidos' => ['Passos']]
         ];
