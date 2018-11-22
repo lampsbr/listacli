@@ -21,9 +21,9 @@
     <fieldset>
         <legend><?= __('Add Projeto') ?></legend>
         <?php
-            echo $this->Form->control('observacao');
             echo $this->Form->control('modelo_id', ['options' => $modelos]);
             echo $this->Form->control('cliente_id', ['options' => $clientes]);
+            echo $this->Form->textarea('observacao', ['placeholder' => 'observações']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
