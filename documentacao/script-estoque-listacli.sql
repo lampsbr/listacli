@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `listacli`.`compra_materials` (
   `observacao` TEXT NULL,
   `preco` DECIMAL(10,2) NULL,
   `material_id` INT NOT NULL,
+  `quantidade`DECIMAL(10,2) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_compra_materials_materials1_idx` (`material_id` ASC),
   CONSTRAINT `fk_compra_materials_materials1`
