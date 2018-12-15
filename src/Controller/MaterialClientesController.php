@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\I18n\Time;
 
 /**
  * MaterialClientes Controller
@@ -49,15 +50,23 @@ class MaterialClientesController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
-    {
+    public function add($id = null){
         $materialCliente = $this->MaterialClientes->newEntity();
+        if($id){
+            $material = $this->MaterialClientes->Materials->get($id);
+            // debug($id);
+            // debug($material);
+            // debug($materialCliente);
+            // return;
+            $materialCliente->material_id = $id;
+            $materialCliente->material = $material;
+        }
         if ($this->request->is('post')) {
             $materialCliente = $this->MaterialClientes->patchEntity($materialCliente, $this->request->getData());
             if ($this->MaterialClientes->save($materialCliente)) {
                 $this->Flash->success(__('The material cliente has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'materials', 'action' => 'view', $materialCliente->material_id]);
             }
             $this->Flash->error(__('The material cliente could not be saved. Please, try again.'));
         }
@@ -92,6 +101,28 @@ class MaterialClientesController extends AppController
         $this->set(compact('materialCliente', 'clientes', 'materials'));
     }
 
+    public function entregou($id = null){
+        $materialCliente = $this->MaterialClientes->get($id, ['contain' => ['Materials']]);
+
+        $agora = Time::now();
+        $mudancas = [
+            'data_entrega' => [
+                'year' => $agora->year,
+                'month' => $agora->month,
+                'day' => $agora->day,
+                'hour' => $agora->hour,
+                'minute' => $agora->minute
+            ],
+            'material'=> ['saldo_atual' => ($materialCliente->material->saldo_atual - 1)]
+        ];
+        $materialCliente = $this->MaterialClientes->patchEntity($materialCliente, $mudancas);
+        if ($this->MaterialClientes->save($materialCliente)) {
+            $this->Flash->success(__('Cadastrei a entrega!'));
+            return $this->redirect(['controller' => 'materials','action' => 'view', $materialCliente->material->id]);
+        }
+        $this->Flash->error(__('Deu pau ao salvar a entrega. Tente de novo!'));
+    }
+
     /**
      * Delete method
      *
@@ -109,6 +140,6 @@ class MaterialClientesController extends AppController
             $this->Flash->error(__('The material cliente could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['controller' => 'materials', 'action' => 'view', $materialCliente->material_id]);
     }
 }

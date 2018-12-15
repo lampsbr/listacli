@@ -17,12 +17,13 @@
 <div class="materialClientes form large-9 medium-8 columns content">
     <?= $this->Form->create($materialCliente) ?>
     <fieldset>
-        <legend><?= __('Add Material Cliente') ?></legend>
+        <legend>
+            Reservar
+            <?= $materialCliente->has('material') ? $this->Html->link($materialCliente->material->nome, ['controller' => 'Materials', 'action' => 'view', $materialCliente->material->id]) : '';?>
+        </legend>
         <?php
-            echo $this->Form->control('deleted', ['empty' => true]);
-            echo $this->Form->control('data_entrega', ['empty' => true]);
             echo $this->Form->control('cliente_id', ['options' => $clientes]);
-            echo $this->Form->control('material_id', ['options' => $materials]);
+            echo $this->Form->hidden('material_id');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

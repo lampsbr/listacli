@@ -80,6 +80,10 @@ class CompraMaterialsTable extends Table
             ->decimal('preco')
             ->allowEmpty('preco');
 
+        $validator
+            ->decimal('quantidade')
+            ->allowEmpty('quantidade');
+
         return $validator;
     }
 

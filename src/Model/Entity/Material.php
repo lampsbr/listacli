@@ -31,14 +31,6 @@ class Material extends Entity
      * @var array
      */
     protected $_accessible = [
-        'created' => true,
-        'modified' => true,
-        'deleted' => true,
-        'nome' => true,
-        'descricao' => true,
-        'imagem' => true,
-        'saldo_atual' => true,
-        'compra_materials' => true,
-        'material_clientes' => true
+        '*' => true
     ];
 }

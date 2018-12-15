@@ -25,6 +25,7 @@
                 <th scope="col"><?= $this->Paginator->sort('data_chegada') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('preco') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('material_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('quantidade') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -38,7 +39,8 @@
                 <td><?= h($compraMaterial->data_compra) ?></td>
                 <td><?= h($compraMaterial->data_chegada) ?></td>
                 <td><?= $this->Number->format($compraMaterial->preco) ?></td>
-                <td><?= $compraMaterial->has('material') ? $this->Html->link($compraMaterial->material->id, ['controller' => 'Materials', 'action' => 'view', $compraMaterial->material->id]) : '' ?></td>
+                <td><?= $compraMaterial->has('material') ? $this->Html->link($compraMaterial->material->nome, ['controller' => 'Materials', 'action' => 'view', $compraMaterial->material->id]) : '' ?></td>
+                <td><?= $this->Number->format($compraMaterial->quantidade) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $compraMaterial->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $compraMaterial->id]) ?>

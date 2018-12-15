@@ -29,6 +29,7 @@
             echo $this->Form->control('observacao');
             echo $this->Form->control('preco');
             echo $this->Form->control('material_id', ['options' => $materials]);
+            echo $this->Form->control('quantidade');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

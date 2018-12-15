@@ -26,6 +26,7 @@ class CompraMaterialsFixture extends TestFixture
         'observacao' => ['type' => 'text', 'length' => null, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'preco' => ['type' => 'decimal', 'length' => 10, 'precision' => 2, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => ''],
         'material_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'quantidade' => ['type' => 'decimal', 'length' => 10, 'precision' => 2, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => ''],
         '_indexes' => [
             'fk_compra_materials_materials1_idx' => ['type' => 'index', 'columns' => ['material_id'], 'length' => []],
         ],
@@ -50,14 +51,15 @@ class CompraMaterialsFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'created' => '2018-12-15 16:53:46',
-                'modified' => '2018-12-15 16:53:46',
-                'deleted' => '2018-12-15 16:53:46',
-                'data_compra' => '2018-12-15 16:53:46',
-                'data_chegada' => '2018-12-15 16:53:46',
+                'created' => '2018-12-15 17:48:30',
+                'modified' => '2018-12-15 17:48:30',
+                'deleted' => '2018-12-15 17:48:30',
+                'data_compra' => '2018-12-15 17:48:30',
+                'data_chegada' => '2018-12-15 17:48:30',
                 'observacao' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
                 'preco' => 1.5,
-                'material_id' => 1
+                'material_id' => 1,
+                'quantidade' => 1.5
             ],
         ];
         parent::init();

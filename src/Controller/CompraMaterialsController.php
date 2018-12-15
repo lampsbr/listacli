@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\I18n\Time;
 
 /**
  * CompraMaterials Controller
@@ -61,7 +62,7 @@ class CompraMaterialsController extends AppController
             if ($this->CompraMaterials->save($compraMaterial)) {
                 $this->Flash->success(__('The compra material has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'materials', 'action' => 'view', $compraMaterial->material_id]);
             }
             $this->Flash->error(__('The compra material could not be saved. Please, try again.'));
         }
@@ -94,6 +95,31 @@ class CompraMaterialsController extends AppController
         $this->set(compact('compraMaterial', 'materials'));
     }
 
+    public function chegou($id = null){
+        $compraMaterial = $this->CompraMaterials->get($id, ['contain' => ['Materials']]);
+
+
+        $agora = Time::now();
+        $mudancas = [
+            'data_chegada' => [
+                'year' => $agora->year,
+                'month' => $agora->month,
+                'day' => $agora->day,
+                'hour' => $agora->hour,
+                'minute' => $agora->minute
+            ],
+            'material'=> ['saldo_atual' => ($compraMaterial->quantidade + $compraMaterial->material->saldo_atual)]
+        ];
+        //debug($compraMaterial);
+        $compraMaterial = $this->CompraMaterials->patchEntity($compraMaterial, $mudancas);
+        //debug($compraMaterial);
+        if ($this->CompraMaterials->save($compraMaterial)) {
+            $this->Flash->success(__('Chegou a compra!'));
+            return $this->redirect(['controller' => 'materials','action' => 'view', $compraMaterial->material->id]);
+        }
+        $this->Flash->error(__('The compra material could not be saved. Please, try again.'));
+    }
+
     /**
      * Delete method
      *
@@ -111,6 +137,6 @@ class CompraMaterialsController extends AppController
             $this->Flash->error(__('The compra material could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['controller' => 'materials', 'action' => 'view', $compraMaterial->material_id]);
     }
 }

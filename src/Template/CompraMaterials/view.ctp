@@ -31,6 +31,10 @@
             <td><?= $this->Number->format($compraMaterial->preco) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Quantidade') ?></th>
+            <td><?= $this->Number->format($compraMaterial->quantidade) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Created') ?></th>
             <td><?= h($compraMaterial->created) ?></td>
         </tr>

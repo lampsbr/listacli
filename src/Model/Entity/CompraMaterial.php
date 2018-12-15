@@ -15,6 +15,7 @@ use Cake\ORM\Entity;
  * @property string|null $observacao
  * @property float|null $preco
  * @property int $material_id
+ * @property float|null $quantidade
  *
  * @property \App\Model\Entity\Material $material
  */
@@ -31,14 +32,6 @@ class CompraMaterial extends Entity
      * @var array
      */
     protected $_accessible = [
-        'created' => true,
-        'modified' => true,
-        'deleted' => true,
-        'data_compra' => true,
-        'data_chegada' => true,
-        'observacao' => true,
-        'preco' => true,
-        'material_id' => true,
-        'material' => true
+        '*' => true
     ];
 }

@@ -30,13 +30,6 @@ class MaterialCliente extends Entity
      * @var array
      */
     protected $_accessible = [
-        'created' => true,
-        'modified' => true,
-        'deleted' => true,
-        'data_entrega' => true,
-        'cliente_id' => true,
-        'material_id' => true,
-        'cliente' => true,
-        'material' => true
+        '*' => true
     ];
 }

@@ -15,13 +15,16 @@
 <div class="compraMaterials form large-9 medium-8 columns content">
     <?= $this->Form->create($compraMaterial) ?>
     <fieldset>
-        <legend><?= __('Add Compra Material') ?></legend>
+        <legend>
+            Cadastrar compra para 
+            <?= $compraMaterial->has('material') ? $this->Html->link($compraMaterial->material->nome, ['controller' => 'Materials', 'action' => 'view', $compraMaterial->material->id]) : '';?>
+        </legend>
         <?php
             echo $this->Form->control('data_compra');
             echo $this->Form->control('observacao');
-            echo $this->Form->control('preco');
-            echo $compraMaterial->has('material') ? $this->Html->link($compraMaterial->material->nome, ['controller' => 'Materials', 'action' => 'view', $compraMaterial->material->id]) : '';
+            echo $this->Form->control('preco');            
             echo $this->Form->hidden('material_id');
+            echo $this->Form->control('quantidade');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
