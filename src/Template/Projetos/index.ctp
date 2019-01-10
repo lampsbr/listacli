@@ -24,7 +24,8 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('descricao') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Modelos.nome','Projeto') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Clientes.nome','Cliente') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('observacao') ?></th>
                 <th scope="col">Progresso</th>
                 <th scope="col">Último concluído</th>
@@ -37,7 +38,8 @@
             <?php foreach ($projetos as $projeto): ?>
             <tr>
                 <td><?= $this->Number->format($projeto->id) ?></td>
-                <td><?= $projeto->descricao ?></td>
+                <td><?= $projeto->modelo->nome ?></td>
+                <td><?= $projeto->cliente->nome ?></td>
                 <td><?= h($projeto->observacao) ?></td>
                 <!--<td><?= h($projeto->etapasConcluidas) ?></td>-->
                 <td><progress value="<?= $projeto->totalConcluidos ?>" max="<?= $projeto->totalPassos ?>"></progress></td>

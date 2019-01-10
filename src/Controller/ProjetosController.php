@@ -21,7 +21,8 @@ class ProjetosController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Modelos' => ['Passos'], 'Clientes', 'Concluidos' => ['Passos']]
+            'contain' => ['Modelos' => ['Passos'], 'Clientes', 'Concluidos' => ['Passos']],
+            'sortWhitelist' => ['id', 'Modelos.nome', 'Clientes.nome', 'observacao']
         ];
         $projetos = $this->paginate($this->Projetos);    
         $this->set(compact('projetos'));
