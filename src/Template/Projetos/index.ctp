@@ -20,6 +20,8 @@
     <?= $this->Html->link('Novo Projeto', ['action' => 'add'],['class' =>'right']) ?>
     <?= $this->Html->image('icons/plus-square.svg',['class' => 'right', 'style' => 'margin-right: 0.5em;']) ?>
     <h3><?= __('Projetos') ?></h3>
+    <br/>
+    
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -65,4 +67,10 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
+    <?php echo $this->Form->create(''); ?>
+        <input type="text" name="busca" class="form-control input-lg" placeholder="Buscar" value="<?=(isset($busca)?$busca:'')?>" />
+        <button class="btn btn-info btn-lg" type="submit">
+            VAI
+        </button>
+    <?php echo $this->Form->end(); ?>
 </div>

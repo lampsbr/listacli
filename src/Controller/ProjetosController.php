@@ -18,14 +18,29 @@ class ProjetosController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function index()
-    {
-        $this->paginate = [
-            'contain' => ['Modelos' => ['Passos'], 'Clientes', 'Concluidos' => ['Passos']],
-            'sortWhitelist' => ['id', 'Modelos.nome', 'Clientes.nome', 'observacao']
-        ];
+    public function index(){
+
+        $busca = '';
+        if(null !== $this->request->getData('busca')){
+            $busca = trim($this->request->getData('busca'));
+            $this->paginate = [
+                'contain' => ['Modelos' => ['Passos'], 'Clientes', 'Concluidos' => ['Passos']],
+                'conditions' => ['OR' => [
+                    ['Clientes.nome like' => '%'.$busca.'%'],
+                    ['Modelos.nome like' => '%'.$busca.'%'],
+                    ['Projetos.observacao like' => '%'.$busca.'%']
+                ]],
+                'sortWhitelist' => ['id', 'Modelos.nome', 'Clientes.nome', 'observacao']
+            ];
+        } else {
+            $this->paginate = [
+                'contain' => ['Modelos' => ['Passos'], 'Clientes', 'Concluidos' => ['Passos']],
+                'sortWhitelist' => ['id', 'Modelos.nome', 'Clientes.nome', 'observacao']
+            ];
+        }
+
         $projetos = $this->paginate($this->Projetos);    
-        $this->set(compact('projetos'));
+        $this->set(compact('projetos', 'busca'));
     }
 
     /**
