@@ -23,16 +23,20 @@
     <h3><?= h($projeto->descricao) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Observacao') ?></th>
-            <td><?= h($projeto->observacao) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Modelo') ?></th>
             <td><?= $projeto->has('modelo') ? $this->Html->link($projeto->modelo->nome, ['controller' => 'Modelos', 'action' => 'view', $projeto->modelo->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Cliente') ?></th>
             <td><?= $projeto->has('cliente') ? $this->Html->link($projeto->cliente->nome, ['controller' => 'Clientes', 'action' => 'view', $projeto->cliente->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Observacao') ?></th>
+            <td><?= h($projeto->observacao) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Arquivado') ?></th>
+            <td><?= $projeto->arquivado ? __('Yes') : __('No'); ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>

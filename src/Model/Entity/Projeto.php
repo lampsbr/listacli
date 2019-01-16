@@ -11,6 +11,7 @@ use Cake\I18n\Time;
  * @property string|null $observacao
  * @property int $modelo_id
  * @property int $cliente_id
+ * @property bool $arquivado
  *
  * @property \App\Model\Entity\Modelo $modelo
  * @property \App\Model\Entity\Cliente $cliente
@@ -32,6 +33,7 @@ class Projeto extends Entity
         'observacao' => true,
         'modelo_id' => true,
         'cliente_id' => true,
+        'arquivado' => true,
         'modelo' => true,
         'cliente' => true,
         'concluidos' => true
@@ -73,5 +75,5 @@ class Projeto extends Entity
         return $retorno;
     }
 
-
+    
 }

@@ -25,22 +25,36 @@ class ProjetosController extends AppController
             $busca = trim($this->request->getData('busca'));
             $this->paginate = [
                 'contain' => ['Modelos' => ['Passos'], 'Clientes', 'Concluidos' => ['Passos']],
-                'conditions' => ['OR' => [
-                    ['Clientes.nome like' => '%'.$busca.'%'],
-                    ['Modelos.nome like' => '%'.$busca.'%'],
-                    ['Projetos.observacao like' => '%'.$busca.'%']
-                ]],
+                'conditions' => [
+                    'OR' => [
+                        ['Clientes.nome like' => '%'.$busca.'%'],
+                        ['Modelos.nome like' => '%'.$busca.'%'],
+                        ['Projetos.observacao like' => '%'.$busca.'%']
+                    ],
+                    'Projetos.arquivado' => false
+                ],
                 'sortWhitelist' => ['id', 'Modelos.nome', 'Clientes.nome', 'observacao']
             ];
         } else {
             $this->paginate = [
                 'contain' => ['Modelos' => ['Passos'], 'Clientes', 'Concluidos' => ['Passos']],
+                'conditions' => ['arquivado' => false],
                 'sortWhitelist' => ['id', 'Modelos.nome', 'Clientes.nome', 'observacao']
             ];
         }
 
         $projetos = $this->paginate($this->Projetos);    
         $this->set(compact('projetos', 'busca'));
+    }
+
+    public function arquivados(){
+        $this->paginate = [
+            'contain' => ['Modelos' => ['Passos'], 'Clientes', 'Concluidos' => ['Passos']],
+            'conditions' => ['arquivado' => true],
+            'sortWhitelist' => ['id', 'Modelos.nome', 'Clientes.nome', 'observacao']
+        ];
+        $projetos = $this->paginate($this->Projetos);    
+        $this->set(compact('projetos'));
     }
 
     /**

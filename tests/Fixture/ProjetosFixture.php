@@ -21,6 +21,7 @@ class ProjetosFixture extends TestFixture
         'observacao' => ['type' => 'string', 'length' => 45, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'modelo_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'cliente_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'arquivado' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => '0', 'comment' => '', 'precision' => null],
         '_indexes' => [
             'fk_projetos_modelos1_idx' => ['type' => 'index', 'columns' => ['modelo_id'], 'length' => []],
             'fk_projetos_clientes1_idx' => ['type' => 'index', 'columns' => ['cliente_id'], 'length' => []],
@@ -49,7 +50,8 @@ class ProjetosFixture extends TestFixture
                 'id' => 1,
                 'observacao' => 'Lorem ipsum dolor sit amet',
                 'modelo_id' => 1,
-                'cliente_id' => 1
+                'cliente_id' => 1,
+                'arquivado' => 1
             ],
         ];
         parent::init();

@@ -23,13 +23,14 @@
     </ul>
 </nav>
 <div class="projetos form large-9 medium-8 columns content">
-    <?= $this->Form->create($projeto, ['type'=>'post','enctype' => 'multipart/form-data']) ?>
+<?= $this->Form->create($projeto, ['type'=>'post','enctype' => 'multipart/form-data']) ?>
     <fieldset>
         <legend><?= __('Edit Projeto') ?></legend>
         <?php
-            echo $this->Form->control('observacao');
             echo $this->Form->control('modelo_id', ['options' => $modelos]);
             echo $this->Form->control('cliente_id', ['options' => $clientes]);
+            echo $this->Form->textarea('observacao', ['placeholder' => 'observações']);
+            echo $this->Form->control('arquivado');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -44,6 +44,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <ul class="right">
                 <li><?= $this->Html->link(__('Clientes'), ['controller' => 'clientes', 'action' => 'index']) ?> </li>
                 <li><?= $this->Html->link(__('Projetos'), ['controller' => 'projetos', 'action' => 'index']) ?> </li>
+                <li><?= $this->Html->link('Projetos arquivados', ['controller' => 'projetos', 'action' => 'arquivados']) ?> </li>
                 <li><?= $this->Html->link(__('Modelos'), ['controller' => 'modelos', 'action' => 'index']) ?> </li>
                 <li><?= $this->Html->link(__('Estoque'), ['controller' => 'materials', 'action' => 'index']) ?> </li>
                 <?php if (isset($_SESSION['Auth']['User']['email'])): ?>

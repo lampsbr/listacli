@@ -52,8 +52,6 @@ class ProjetosTable extends Table
         ]);
     }
 
-    
-
     /**
      * Default validation rules.
      *
@@ -70,6 +68,11 @@ class ProjetosTable extends Table
             ->scalar('observacao')
             ->maxLength('observacao', 45)
             ->allowEmpty('observacao');
+
+        $validator
+            ->boolean('arquivado')
+            ->requirePresence('arquivado', 'create')
+            ->notEmpty('arquivado');
 
         return $validator;
     }
