@@ -41,13 +41,10 @@
             <tr>
                 <td><?= $this->Number->format($projeto->id) ?></td>
                 <td><?= $projeto->modelo->nome ?></td>
-                <td><?= $projeto->cliente->nome ?></td>
+                <td><?= $this->Html->link($projeto->cliente->nome, ['controller' => 'Clientes', 'action' => 'view', $projeto->cliente->id]) ?></td>
                 <td><?= h($projeto->observacao) ?></td>
-                <!--<td><?= h($projeto->etapasConcluidas) ?></td>-->
                 <td><progress value="<?= $projeto->totalConcluidos ?>" max="<?= $projeto->totalPassos ?>"></progress></td>
                 <td><?= h($projeto->ultimaConcluida) ?></td>
-                <!--<td><?= $projeto->has('modelo') ? $this->Html->link($projeto->modelo->id, ['controller' => 'Modelos', 'action' => 'view', $projeto->modelo->id]) : '' ?></td>
-                <td><?= $projeto->has('cliente') ? $this->Html->link($projeto->cliente->id, ['controller' => 'Clientes', 'action' => 'view', $projeto->cliente->id]) : '' ?></td>-->
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $projeto->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $projeto->id]) ?>
