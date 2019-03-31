@@ -28,6 +28,14 @@
             <th scope="row"><?= __('Saldo Atual') ?></th>
             <td><?= $this->Number->format($material->saldo_atual) ?></td>
         </tr>
+        <tr>
+            <th scope="row"><?= __('Quantidade JÁ entregue') ?></th>
+            <td><?= $this->Number->format($material->somaJaEntregue) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Ainda falta entregar') ?></th>
+            <td><?= $this->Number->format($material->somaNaoEntregue) ?></td>
+        </tr>
     </table>
     <br/>
     <div class="related">

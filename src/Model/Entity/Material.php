@@ -33,4 +33,33 @@ class Material extends Entity
     protected $_accessible = [
         '*' => true
     ];
+
+
+    protected function _getSomaNaoEntregue(){
+        if(is_null($this->material_clientes) || empty($this->material_clientes)){
+            return 0;
+        }
+        $retorno = 0;
+        //varrer o array e contar quantos material_clientes NÃO foram entregues
+        foreach ($this->material_clientes as $mc) {
+            if(is_null($mc->data_entrega)){
+                $retorno++;
+            }
+        }
+        return $retorno;
+    }
+
+    protected function _getSomaJaEntregue(){
+        if(is_null($this->material_clientes) || empty($this->material_clientes)){
+            return 0;
+        }
+        $retorno = 0;
+        //varrer o array e contar quantos material_clientes já foram entregues
+        foreach ($this->material_clientes as $mc) {
+            if(!is_null($mc->data_entrega)){
+                $retorno++;
+            }
+        }
+        return $retorno;
+    }
 }
