@@ -18,8 +18,10 @@ class ClientesController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function index()
-    {
+    public function index(){
+        $this->paginate = [
+            'order' => ['nome' => 'asc']
+        ];
         $clientes = $this->paginate($this->Clientes);
 
         $this->set(compact('clientes'));

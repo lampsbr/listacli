@@ -70,7 +70,7 @@ class MaterialClientesController extends AppController
             }
             $this->Flash->error(__('The material cliente could not be saved. Please, try again.'));
         }
-        $clientes = $this->MaterialClientes->Clientes->find('list', ['limit' => 200]);
+        $clientes = $this->MaterialClientes->Clientes->find('list', ['order' => ['nome' => 'asc'], 'limit' => 200]);
         $materials = $this->MaterialClientes->Materials->find('list', ['limit' => 200]);
         $this->set(compact('materialCliente', 'clientes', 'materials'));
     }

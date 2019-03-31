@@ -108,7 +108,7 @@ class ProjetosController extends AppController
             $this->Flash->error(__('The projeto could not be saved. Please, try again.'));
         }
         $modelos = $this->Projetos->Modelos->find('list', ['limit' => 200]);
-        $clientes = $this->Projetos->Clientes->find('list', ['limit' => 200]);
+        $clientes = $this->Projetos->Clientes->find('list', ['order' => ['nome' => 'asc'],'limit' => 200]);
         $this->set(compact('projeto', 'modelos', 'clientes'));
     }
 
