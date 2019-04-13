@@ -4,18 +4,24 @@
  * @var \App\Model\Entity\Cliente[]|\Cake\Collection\CollectionInterface $clientes
  */
 ?>
-<!--<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Cliente'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Projetos'), ['controller' => 'Projetos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Projeto'), ['controller' => 'Projetos', 'action' => 'add']) ?></li>
-    </ul>
-</nav>-->
+
 <div class="clientes index large-12 columns content">
     <?= $this->Html->link('Novo Cliente', ['action' => 'add'],['class' =>'right']) ?>
     <?= $this->Html->image('icons/plus-square.svg',['class' => 'right', 'style' => 'margin-right: 0.5em;']) ?>
     <h3><?= __('Clientes') ?></h3>
+    <?php echo $this->Form->create(''); ?>
+        <div class="row">
+            <div class="small-9 columns">
+                <input type="text" name="busca" class="form-control input-lg" placeholder="Buscar" 
+                value="<?=(isset($busca)?$busca:'')?>" />
+            </div>
+            <div class="small-3 columns">
+                <button class="btn btn-info" type="submit" style="margin-top:-3px">
+                    VAI
+                </button>
+            </div>
+        </div>
+    <?php echo $this->Form->end(); ?>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
