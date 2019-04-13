@@ -9,6 +9,7 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $nome
  * @property string|null $observacao
+ * @property string|null $endereco
  *
  * @property \App\Model\Entity\Projeto[] $projetos
  */
@@ -27,6 +28,7 @@ class Cliente extends Entity
     protected $_accessible = [
         'nome' => true,
         'observacao' => true,
+        'endereco' => true,
         'projetos' => true
     ];
 }

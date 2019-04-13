@@ -25,6 +25,10 @@
         <tr>
             <th scope="row"><?= __('Observacao') ?></th>
             <td><?= h($cliente->observacao) ?></td>
+        </tr>        
+        <tr>
+            <th scope="row"><?= __('Endereço') ?></th>
+            <td><?= h($cliente->endereco) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>

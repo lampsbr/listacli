@@ -25,6 +25,7 @@
         <?php
             echo $this->Form->control('nome');
             echo $this->Form->control('observacao');
+            echo $this->Form->control('endereco');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

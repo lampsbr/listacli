@@ -28,6 +28,7 @@
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('observacao') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('endereco') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -37,6 +38,7 @@
                 <td><?= $this->Number->format($cliente->id) ?></td>
                 <td><?= h($cliente->nome) ?></td>
                 <td><?= h($cliente->observacao) ?></td>
+                <td><?= h($cliente->endereco) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $cliente->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $cliente->id]) ?>

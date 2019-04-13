@@ -62,8 +62,10 @@ class ClientesTable extends Table
 
         $validator
             ->scalar('observacao')
-            ->maxLength('observacao', 45)
+            ->maxLength('observacao', 1000)
             ->allowEmpty('observacao');
+
+        $validator->allowEmpty('endereco');
 
         return $validator;
     }

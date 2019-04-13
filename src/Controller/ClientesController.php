@@ -26,6 +26,7 @@ class ClientesController extends AppController
                 'conditions' => [
                     'OR' => [
                         ['nome like' => '%'.$busca.'%'],
+                        ['endereco like' => '%'.$busca.'%'],
                         ['observacao like' => '%'.$busca.'%']
                     ]
                 ],
